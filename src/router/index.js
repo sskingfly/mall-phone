@@ -4,6 +4,8 @@ import Home from '../views/Home'
 import Friends from '../views/Friends'
 import Search from '../views/Search'
 import Cart from '../views/Cart'
+import NewsList from '../views/Home/news/NewsList'
+import NewsInfo from '../views/Home/news/NewsInfo'
 
 Vue.use(VueRouter)
 
@@ -14,19 +16,53 @@ const routes = [
   },
   {
     path: '/home',
-    component: Home
+    component: Home,
+    meta: {
+      title: '首页',
+      isShow: true
+    }
+  },
+  {
+    path: '/home/newslist',
+    component: NewsList,
+    meta: {
+      title: '新闻列表',
+      isShow: false
+    }
+  },
+  {
+    path: '/home/newsinfo/:id',
+    component: NewsInfo,
+    meta: {
+      title: '新闻详情',
+      isShow: false
+    },
+    // 把id通过父传子的方式传递给  newsinfo 组件
+    props: true
   },
   {
     path: '/friends',
-    component: Friends
+    component: Friends,
+    meta: {
+      title: '会员',
+      isShow: true
+    }
   },
   {
     path: '/search',
-    component: Search
+    component: Search,
+    meta: {
+      title: '搜索',
+      isShow: true
+    }
   },
   {
     path: '/cart',
-    component: Cart
+    component: Cart,
+    meta: {
+      title: '购物车',
+      isShow: true
+    }
   }
 ]
 

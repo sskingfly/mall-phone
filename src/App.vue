@@ -10,7 +10,10 @@
     <!-- main -->
     <router-view></router-view>
     <!-- footer -->
-    <van-tabbar v-model="active">
+    <van-tabbar
+      v-model="active"
+      v-if="$route.meta.isShow"
+    >
       <van-tabbar-item
         icon="home-o"
         to="/home"
@@ -21,7 +24,7 @@
       ></van-tabbar-item>
       <van-tabbar-item
         icon="cart-o"
-        info="6"
+        badge="6"
         to="/cart"
       ></van-tabbar-item>
       <van-tabbar-item
@@ -35,13 +38,17 @@
 export default {
   data() {
     return {
-      title: '首页',
+      title: this.$route.meta.title,
       active: 0
+    }
+  },
+  watch: {
+    '$route.meta.title'(newVal) {
+      this.title = newVal
     }
   },
   methods: {
     clickLeft() {
-      console.log(this.$router)
       this.$router.go(-1)
     }
   }

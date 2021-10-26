@@ -5,7 +5,6 @@ export const getLunbo = () => {
     method: 'get',
     url: '/api/getlunbo'
   })
-  // return request.get('/api/getlunbo')
 }
 
 export const getGrids = () => {
