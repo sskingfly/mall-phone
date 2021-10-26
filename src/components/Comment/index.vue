@@ -7,11 +7,14 @@
       autosize
       label="发表评论"
       type="textarea"
-      placeholder="请输入评论"
+      placeholder="请输入bb的内容"
+      autofocus
+      ref="fieldRef"
     />
     <van-button
       type="primary"
       block
+      @click="postComments"
     >提交评论</van-button>
 
     <div
@@ -41,16 +44,29 @@
     <div v-else>
       暂无数据
     </div>
-    <van-button
+    <!-- <van-button
       type="primary"
       block
       @click="getMore"
       :disabled="disabled"
-    >{{hasMore?'被掏空了': '加载更多'}}</van-button>
+    >{{hasMore?'被掏空了': '加载更多'}}</van-button> -->
+
+    <van-loading
+      type="circular"
+      v-if="isLoading"
+    >
+      加载中...
+    </van-loading>
+    <div
+      v-else
+      @click="getMore"
+    >
+      {{hasMore?'被掏空了': '加载更多'}}
+    </div>
   </div>
 </template>
 <script>
-import { getComments } from '@/api/news'
+import { getComments, postComments } from '@/api/news'
 export default {
   props: ['id'],
   data() {
@@ -61,7 +77,8 @@ export default {
       pageNo: 0,
       pageSize: 3,
       hasMore: false,
-      disabled: false
+      disabled: false,
+      isLoading: false
     }
   },
   created() {
@@ -78,10 +95,27 @@ export default {
       this.comments = this.comments.concat(res.data.message)
       // 计算临界点
       this.hasMore = this.pageNo * this.pageSize > res.data.count
-      // console.log(this.hasMore)
     },
     getMore() {
-      this.getComments()
+      this.isLoading = true
+      setTimeout(() => {
+        this.isLoading = false
+        this.getComments()
+      }, 1000)
+    },
+    async postComments() {
+      if (this.message !== ' ') {
+        await postComments({ id: this.id, content: this.message })
+        this.comments.unshift({
+          user_name: '匿名用户',
+          add_time: new Date().getTime(),
+          content: this.message,
+          rate: 5
+        })
+
+        this.message = ' '
+        // this.$refs.fieldRef.focus()
+      }
     }
   }
 }

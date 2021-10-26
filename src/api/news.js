@@ -21,6 +21,17 @@ export const getComments = ({ id, pageNo, pageSize }) => {
     url: `/api/getcomments/${id}?pageindex=${pageNo}&limit=${pageSize}`
   })
 }
+export const postComments = ({ id, content }) => {
+  return request({
+    method: 'post',
+    url: '/api/postcomment/' + id,
+    data: {
+      content
+    }
+  })
+}
+
+
 
 
 

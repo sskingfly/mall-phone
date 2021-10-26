@@ -40,6 +40,7 @@ export default {
   .van-cell__title {
     font-size: 16px;
     font-weight: 600;
+    flex: 2;
   }
   .content {
     text-indent: 2em;
