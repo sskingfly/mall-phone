@@ -1,0 +1,111 @@
+1.  项目结构
+
+  node_modules 依赖包 
+
+  public 静态资源托管      
+
+  src 源码  
+
+    assets  资源文件    
+
+      images 
+
+      font  
+
+      js  
+
+      css
+
+    
+    components 存放普通的组件
+
+    App.vue 根组件   
+
+    main.js 入口文件 
+
+    views/pages  存放路由文件
+
+    api 统一管理接口模块   
+
+    utils 工具类 
+
+    mixin 混入
+
+    filters 过滤器 
+
+    directives 自定义指令
+
+    plugins 插件 ui
+
+    router 存放路由 
+
+    store vuex状态管理
+
+  .eslintrc.js  语法规则配置
+
+  .gitignore 源码托管过滤文件
+
+  babel.config.js   高级语法配置
+
+  package.json 项目配置文件
+
+
+2. 配置ui
+
+  傻瓜式  
+
+    vue add ui名称    如：vue add vant || vant add element-ui 
+
+  手动配置  
+
+    完整引入 
+
+      1. 安装 vant 
+        npm i vant -S     
+
+      2. 在main.js中引入一下代码  
+
+        import Vue from 'vue';
+        import Vant from 'vant';
+        import 'vant/lib/index.css';
+
+        Vue.use(Vant);
+
+      3. 可以在任意的组件直接使用ui  
+
+        <van-button type="primary">主要按钮</van-button>
+
+    按需引入    
+
+      1. 安装 vant 按需依赖包 
+
+        npm i vant -S  
+        npm i babel-plugin-import -D
+
+      2. 配置babel.config.js  
+
+        // 对于使用 babel7 的用户，可以在 babel.config.js 中配置
+        module.exports = {
+          plugins: [
+            ['import', {
+              libraryName: 'vant',
+              libraryDirectory: 'es',
+              style: true
+            }, 'vant']
+          ]
+        };
+
+      3. // 插件会自动将代码转化为方式二中的按需引入形式
+      
+        import { Button } from 'vant';     
+
+        App.use(Button)   
+
+
+3. 项目托管到远程服务 
+
+  github 
+
+  gitee  
+
+  gitlab
