@@ -33,10 +33,9 @@ export default {
   }
 }
 </script>
-<style lang="scss" >
+<style lang="scss">
 .news-info {
   padding: 0 10px;
-  // box-sizing: border-box;
   .van-cell__title {
     font-size: 16px;
     font-weight: 600;

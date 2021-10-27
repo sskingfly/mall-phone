@@ -6,6 +6,8 @@ import Search from '../views/Search'
 import Cart from '../views/Cart'
 import NewsList from '../views/Home/news/NewsList'
 import NewsInfo from '../views/Home/news/NewsInfo'
+import PhotoList from '../views/Home/photos/PhotoList'
+import PhotoInfo from '../views/Home/photos/PhotoInfo'
 
 Vue.use(VueRouter)
 
@@ -38,6 +40,23 @@ const routes = [
       isShow: false
     },
     // 把id通过父传子的方式传递给  newsinfo 组件
+    props: true
+  },
+  {
+    path: '/home/photolist',
+    component: PhotoList,
+    meta: {
+      title: '图片列表',
+      isShow: false
+    }
+  },
+  {
+    path: '/home/photoinfo/:id',
+    component: PhotoInfo,
+    meta: {
+      title: '图片详情',
+      isShow: false
+    },
     props: true
   },
   {
