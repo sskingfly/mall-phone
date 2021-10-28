@@ -19,7 +19,7 @@
             v-for="image in images"
             :key="image.id"
             v-lazy="image.img_url"
-            @click="goDetail(image.id)"
+            @click="goDetail('/home/photoinfo',image.id)"
           >
         </div>
         <div v-else>
@@ -31,7 +31,9 @@
 </template>
 <script>
 import { getImageCategory, getImages } from '@/api/photos'
+// import mixins from '@/mixins'
 export default {
+  // mixins: [mixins],
   data() {
     return {
       cates: [],
@@ -50,9 +52,6 @@ export default {
     async getImages(id) {
       const res = await getImages(id)
       this.images = res.data.message
-    },
-    goDetail(id) {
-      this.$router.push('/home/photoinfo/' + id)
     }
   },
   created() {

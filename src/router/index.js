@@ -8,6 +8,8 @@ import NewsList from '../views/Home/news/NewsList'
 import NewsInfo from '../views/Home/news/NewsInfo'
 import PhotoList from '../views/Home/photos/PhotoList'
 import PhotoInfo from '../views/Home/photos/PhotoInfo'
+import GoodsList from '../views/Home/goods/GoodsList'
+import GoodsInfo from '../views/Home/goods/GoodsInfo'
 
 Vue.use(VueRouter)
 
@@ -39,7 +41,6 @@ const routes = [
       title: '新闻详情',
       isShow: false
     },
-    // 把id通过父传子的方式传递给  newsinfo 组件
     props: true
   },
   {
@@ -56,6 +57,23 @@ const routes = [
     meta: {
       title: '图片详情',
       isShow: false
+    },
+    props: true
+  },
+  {
+    path: '/home/goodslist',
+    component: GoodsList,
+    meta: {
+      title: '商品列表',
+      isShow: false
+    }
+  },
+  {
+    path: '/home/goodsinfo/:id',
+    component: GoodsInfo,
+    meta: {
+      title: '商品详情',
+      isShow: true
     },
     props: true
   },

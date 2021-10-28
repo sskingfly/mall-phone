@@ -1,18 +1,10 @@
 <template>
   <div class="home">
-    <!-- swipe -->
-    <van-swipe
-      class="my-swipe"
+    <Swiper
+      :lunbolist="lunbolist"
       :autoplay="3000"
-      indicator-color="white"
     >
-      <van-swipe-item
-        v-for="item in lunbolist"
-        :key="item.id"
-      >
-        <img :src="item.img">
-      </van-swipe-item>
-    </van-swipe>
+    </Swiper>
 
     <!-- grid -->
     <van-grid :column-num="3">
@@ -28,6 +20,7 @@
 </template>
 <script>
 import { getLunbo, getGrids } from '../../api/home'
+import Swiper from '@/components/Swiper'
 export default {
   data() {
     return {
@@ -48,6 +41,9 @@ export default {
       const res = await getGrids()
       this.grids = res.data.message
     }
+  },
+  components: {
+    Swiper
   }
 }
 </script>

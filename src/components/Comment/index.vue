@@ -17,10 +17,7 @@
       @click="postComments"
     >提交评论</van-button>
 
-    <div
-      class="comment-list"
-      v-if="comments.length !==0"
-    >
+    <div class="comment-list">
       <van-card
         v-for="(item,index) in comments"
         :key="index"
@@ -41,25 +38,17 @@
         </template>
       </van-card>
     </div>
-    <div v-else>
-      暂无数据
-    </div>
-    <!-- <van-button
-      type="primary"
-      block
-      @click="getMore"
-      :disabled="disabled"
-    >{{hasMore?'被掏空了': '加载更多'}}</van-button> -->
-
     <van-loading
       type="circular"
       v-if="isLoading"
+      class="more"
     >
       加载中...
     </van-loading>
     <div
       v-else
       @click="getMore"
+      class="more"
     >
       {{hasMore?'被掏空了': '加载更多'}}
     </div>
@@ -104,7 +93,7 @@ export default {
       }, 1000)
     },
     async postComments() {
-      if (this.message !== ' ') {
+      if (this.message) {
         await postComments({ id: this.id, content: this.message })
         this.comments.unshift({
           user_name: '匿名用户',
@@ -136,6 +125,12 @@ export default {
     .van-card__desc {
       margin-top: 15px;
     }
+  }
+  .more {
+    color: #969799;
+    font-size: 14px;
+    line-height: 50px;
+    text-align: center;
   }
 }
 </style>

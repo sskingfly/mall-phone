@@ -6,6 +6,7 @@
       left-text="返回"
       left-arrow
       @click-left="clickLeft"
+      fixed
     />
     <!-- main -->
     <router-view></router-view>
@@ -24,7 +25,7 @@
       ></van-tabbar-item>
       <van-tabbar-item
         icon="cart-o"
-        badge="6"
+        :badge="$store.getters['cart/getAllCount']"
         to="/cart"
       ></van-tabbar-item>
       <van-tabbar-item
@@ -54,5 +55,9 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+.app {
+  padding-top: 46px;
+  padding-bottom: 50px;
+}
 </style>
